@@ -2,83 +2,50 @@ import React, {
     Component
 } from 'react'
 
-import {
-    render
-} from 'react-dom'
+import {render} from 'react-dom'
 
-// const Header = () => <h1>类组件!!!</h1>
-// 嵌套，这是JSX的语法， 但不是合法的js代码
+import './index.css'
+
+import classNames from 'classnames'
+
+import styled from 'styled-components'
+
 // class App extends Component {
-//     render(){
-//         console.log(this.props.desc)
-//         return  (
-//         <div>
-//             <Header />
-//             <p>{this.props.desc}</p>
-//         </div>
-//         ) 
-
+//     render (){
+//         const style = {color: 'red'};
+//         return(
+//             <div>
+//                 {/* 第一种使用css的方式，采用js的方式 */}
+//                 <h1 style={style}>元素中的样式</h1>
+//             </div>
+//         )
 //     }
 // }
 
-// 虚拟DOM 的表示方式
-// const appVDom = {
-//     tag: 'div',
-//     attrs: {
-//         className: 'app',
-//         id: 'aooRoot'
-//     },
-//     children: [{
-//         tag: 'h1',
-//         attrs: {
-//             className: 'title'
-//         },
-//         children: [
-//             'JSX原理'
-//         ]
-//     }, {
-//         tag: 'p',
-//         attrs: null,
-//         children: [
-//             '类组件是继承React.Component的'
-//         ]
-//     }]
-// }
+// 利用styled 插件
+const Title = styled.h1`
+    color: purple
+`
 
-// 这里是使用类的形式创建的组件，所以react 在真正渲染的时候会把上面的代码编译为下面这个样子来运行，下面的代码就是合法的js代码
 class App extends Component {
-    render() {
-        return (
-            // React.createElement 是一个方法，用于创建元素，可以有很多的参数，但是前两个是固定的;
-            // 第一个是 标签名
-            // 第二个可以理解为 标签的属性
-            // 剩下的，你就继续写更多的子元素吧
-            // React.createElement(type, [props], [....children])
-            React.createElement(
-                'div',
-                {
-                    className:'app',
-                    title:'appRoot'
-                },
-                React.createElement(
-                    'h1',
-                    {
-                        className:'title'
-                    },
-                    'JSX原理'
-                ),
-                React.createElement(
-                    'p',
-                    null,
-                    '类组件是继承React.Component的'
-                )
-            )
+    render (){
+        const style = {color: 'red'};
+        return(
+            <div>
+                <Title>元素中的样式</Title>
+                <ol>
+                    <li style={style}>使用style内联创建</li>
+                    <li className="has-text-red">使用class的方式，但是在react 里面 class要写成className</li>
+                    <li className={classNames('a', {'b': true, 'c': false})}>
+                        动态添加不同的className 就可以使用第三方的包叫做 classnames,比如这个li标签上就只有a b 没有 c</li>
+                
+                </ol>
+            </div>
         )
-
     }
 }
 
-render( <
-    App desc = "类组件是继承 React.Component的" / > ,
+render(
+    <App/>,
     document.querySelector("#root")
 )
