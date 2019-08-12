@@ -1,5 +1,12 @@
+/*
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-08-07 00:49:10
+ * @LastEditTime: 2019-08-12 23:33:18
+ * @LastEditors: Please set LastEditors
+ */
 import React, {
-    Component
+    Component, Fragment
 } from 'react'
 
 import {render} from 'react-dom'
@@ -9,6 +16,8 @@ import './index.css'
 import classNames from 'classnames'
 
 import styled from 'styled-components'
+
+import App2 from './App'
 
 // class App extends Component {
 //     render (){
@@ -31,7 +40,7 @@ class App extends Component {
     render (){
         const style = {color: 'red'};
         return(
-            <div>
+            <Fragment>
                 <Title>元素中的样式</Title>
                 <ol>
                     <li style={style}>使用style内联创建</li>
@@ -40,12 +49,12 @@ class App extends Component {
                         动态添加不同的className 就可以使用第三方的包叫做 classnames,比如这个li标签上就只有a b 没有 c</li>
                 
                 </ol>
-            </div>
+            </Fragment>
         )
     }
 }
 
 render(
-    <App/>,
+    <App2/>,
     document.querySelector("#root")
 )
